@@ -7,7 +7,24 @@ from app.models import (
 )
 
 def seed_db():
-    print("Creating database tables...")
+    # Only seed if database is empty or if --force is passed
+    force_seed = "--force" in sys.argv
+    db = SessionLocal()
+    has_data = False
+    try:
+        # Check if we already have users or courses seeded
+        has_data = db.query(User).first() is not None or db.query(Course).first() is not None
+    except Exception:
+        pass
+    finally:
+        db.close()
+
+    if has_data and not force_seed:
+        print("Database already contains seeded data. Skipping seeding to prevent data loss.")
+        print("Run with 'python seed.py --force' if you want to force reset and re-seed.")
+        return
+
+    print("Resetting and creating database tables...")
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
 

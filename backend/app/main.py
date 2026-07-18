@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Depends, HTTPException, Header, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -12,9 +13,17 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Duolingo Clone API", version="1.0.0")
 
+# Setup CORS origins dynamically for production
+cors_origins_env = os.getenv("CORS_ORIGINS")
+origins = (
+    [origin.strip() for origin in cors_origins_env.split(",")]
+    if cors_origins_env
+    else ["http://localhost:3000", "http://localhost:3001"]
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
