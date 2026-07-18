@@ -18,7 +18,7 @@ export default function BottomNav() {
   ];
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 px-2 py-3 z-50 flex items-center justify-around h-[80px]">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-sidebar-bg border-t-2 border-sidebar-border px-2 py-3 z-50 flex items-center justify-around h-[80px]">
       {links.map((link) => {
         const isActive = pathname === link.href;
         const Icon = link.icon;
@@ -28,12 +28,12 @@ export default function BottomNav() {
             <motion.div
               whileTap={{ scale: 0.9 }}
               className={`p-2 rounded-xl transition-all ${
-                isActive ? "bg-gray-100/50" : ""
+                isActive ? "bg-card-bg shadow-sm" : ""
               }`}
             >
               <Icon 
                 strokeWidth={isActive ? 2.5 : 2}
-                className={`w-7 h-7 ${isActive ? link.color : "text-gray-400"}`} 
+                className={`w-7 h-7 ${isActive ? link.color : "text-text-secondary"} transition-colors`} 
               />
             </motion.div>
           </Link>
