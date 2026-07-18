@@ -1,6 +1,7 @@
 "use client";
 
 import Sidebar from "@/components/Sidebar";
+import BottomNav from "@/components/BottomNav";
 import StatsHeader from "@/components/StatsHeader";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/services/api";
@@ -29,8 +30,9 @@ export default function AchievementsPage() {
   return (
     <div className="flex min-h-screen bg-background text-foreground">
       <Sidebar className="hidden md:flex" />
+        <BottomNav />
 
-      <div className="flex-1 flex flex-col min-h-screen max-w-4xl border-r border-sidebar-border bg-background">
+      <div className="flex-1 flex flex-col min-h-screen pb-20 md:pb-0 max-w-4xl border-r border-sidebar-border bg-background">
         <StatsHeader />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-10">

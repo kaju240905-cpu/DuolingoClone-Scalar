@@ -1,6 +1,7 @@
 "use client";
 
 import Sidebar from "@/components/Sidebar";
+import BottomNav from "@/components/BottomNav";
 import StatsHeader from "@/components/StatsHeader";
 import LearningPath from "@/components/LearningPath";
 import { useQuery } from "@tanstack/react-query";
@@ -106,9 +107,10 @@ export default function HomePage() {
       <div className="flex min-h-screen bg-background text-foreground">
         {/* Left Sidebar */}
         <Sidebar className="hidden md:flex" />
+        <BottomNav />
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col min-h-screen max-w-4xl border-r border-sidebar-border bg-background">
+        <div className="flex-1 flex flex-col min-h-screen pb-20 md:pb-0 max-w-4xl border-r border-sidebar-border bg-background">
           <StatsHeader />
           <main className="flex-1 overflow-y-auto">
             <LearningPath />
